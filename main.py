@@ -32,22 +32,22 @@ while(current_player.health_point != 0):
     current_player = player_one
     current_opponent = player_two
   print("----------------- TURN " + str(turn_count) + " -----------------\n\n")
-  print(str(current_player.name) +"'s turn. You have " + str(timer) + " seconds! Choose a card between:")
+  print(current_player.name +"'s turn. You have " + str(timer) + " seconds! Choose a card between:")
   # Print every servant card in player's hand
   for servant in servants:
-    print("------->" + str(servant.name))
+    print("------->" + servant.name)
   print('\n')
-  input = raw_input("What is your choice?\n")
+  record = input("What is your choice?\n")
 
 
   # If inputed answer is in the player's hand 
-  if (input):
+  if (record):
     turn_count+=1
     os.system('cls' if os.name == 'nt' else 'clear')
-    history = history + str(current_opponent.name) + " chose " + input + "\n"
-    print history
+    history = history + current_opponent.name + " chose " + record + "\n"
+    print(history)
   else:
     # Stop the game if no answer. Turn's player lost the game
-    print "You said nothing! " + str(current_player.name) + " lost this game!"
+    print("You said nothing! " + current_player.name + " lost this game!")
     sys.exit()
-print(str(current_player.name) +" has lost this game !")
+print(current_player.name +" has lost this game !")
