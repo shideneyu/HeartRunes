@@ -37,15 +37,14 @@ while(current_player.health_point != 0):
   for servant in servants:
     print("------->" + str(servant.name))
   print('\n')
-  print("What is your choice?")
+  input = raw_input("What is your choice?\n")
 
-  i, o, e = select.select( [sys.stdin], [], [], timer )
 
   # If inputed answer is in the player's hand 
-  if (i):
+  if (input):
     turn_count+=1
     os.system('cls' if os.name == 'nt' else 'clear')
-    history = history + str(current_opponent.name) + " chose " + sys.stdin.readline().strip() + "\n"
+    history = history + str(current_opponent.name) + " chose " + input + "\n"
     print history
   else:
     # Stop the game if no answer. Turn's player lost the game
