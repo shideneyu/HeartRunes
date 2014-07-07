@@ -15,11 +15,11 @@ class Servant
 end
 
 class Player
-  private mana_point
+  private popularity_point
   private health_point
   private cards
-  
-  def constructor(mana_point, health_point, cards)
+
+  def constructor(popularity_point, health_point, cards)
   end
 end
 

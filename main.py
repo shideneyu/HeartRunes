@@ -5,26 +5,22 @@ if os.name == 'nt':
   import msvcrt, time
 else:
   from select import select
+
 from servant import Servant
 from player import Player
 
 # Create the new players
-player_one = Player("sidney")
-player_two = Player("yassine")
+players = {1: 'yassine', 2: 'sidney'}
 
-# Create the servants
-dieudonne = Servant("Dieudonne", "42", "80", "100")
-
-
-taubira = Servant("Taubira", "30", "70", "80")
-
+playerOne = Player( players[1] )
+playerTwo = Player( players[2] )
 # Set the servants inside an array
-servants = [dieudonne, taubira]
+
 # Initialize variables
-current_player = player_two
-current_opponent = player_one
+current_player = playerOne
+current_opponent = playerTwo
 turn_count = 0
-timer = 10
+timer = 15
 history = ""
 
 # Stop the game if incorrect answer
@@ -33,7 +29,7 @@ def game_loss():
   sys.exit()
 
 # Timeout for windows only
-def windowsTimeout( caption, default, timeout = 5):
+def windowsTimeout( caption, default, timeout = 15):
   start_time = time.time()
   sys.stdout.write('%s(%s):'%(caption, default));
   input = ''
@@ -47,7 +43,6 @@ def windowsTimeout( caption, default, timeout = 5):
       if len(input) == 0 and (time.time() - start_time) > timeout:
           break
 
-  print ''  # needed to move to next line
   if len(input) > 0:
       return input
   else:
@@ -58,7 +53,6 @@ def process_choice(record, servants):
   # Set those variable as global, or it won't work.
   global turn_count
   global history
-  # If inputed answer is in the player's hand 
   if (record in list(map(lambda x: x.name, servants))):
     servants = [servant for servant in servants if servant.name != record]
     turn_count+=1
@@ -69,29 +63,28 @@ def process_choice(record, servants):
     # Stop the game if no answer. Turn's player lost the game
     game_loss()
 
-#print("First Servant:", dieudonne.name, dieudonne.health_point, dieudonne.attack_point, dieudonne.mana_cost)
-#print("Second Servant:", taubira.name, taubira.health_point, taubira.attack_point, taubira.mana_cost)
-
-while(current_player.health_point != 0):
-  if (current_player == player_one):
-    current_player = player_two
-    current_opponent = player_one
+# Points de vies
+while(current_player.health != 0 or current_player.health >= 100 ):
+  if (current_player == playerOne):
+    current_player = playerTwo
+    current_opponent = playerOne
   else:
-    current_player = player_one
-    current_opponent = player_two
-  print("----------------- TURN " + str(turn_count) + " -----------------\n\n")
-  print(current_player.name +"'s turn. You have " + str(timer) + " seconds! Choose a card between:")
+    current_player = playerOne
+    current_opponent = playerTwo
+  print("----------------- TURN " + str( turn_count ) + " -----------------\n")
+  print("Hey " + current_player.name+ ", a ton tour  -------\n")
+  print("Voici ta main \n")
+  current_player.hand.getHand ()
+  print("Hey " + current_player.name+ ", a ton tour  -------\n")
+
+  print("Terrain \n")
   # Print every servant card in player's hand
-  for servant_name in list(map(lambda x: x.name, servants)):
-    print("------->" + servant_name)
-  print('\n')
-  
 
   # Timer for linux/mac
   if os.name != "nt":
     timeout = 10
     print("What is your choice?\n")
-    record, _, _ = select([sys.stdin], [], [], timeout)
+    record, _, _ = select([ sys.stdin], [], [], timeout)
     if record:
       process_choice(sys.stdin.readline().rstrip(), servants)
     else:

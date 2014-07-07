@@ -1,31 +1,23 @@
 import random
+import csv
 from servant import Servant
+from card import Card
 
 class Deck:
-  #Servant(self, name, health_point, attack_point, mana_cost)
-  
-  def __init__(self):
-    self.listServant = [
-      Servant("a", 2, 1, 1),
-      Servant("b", 5, 2, 3),
-      Servant("c", 7, 3, 2),
-      Servant("d", 1, 2, 1),
-      Servant("e", 10, 1, 2),
-      Servant("f", 1, 2, 3),
-      Servant("g", 4, 9, 2),
-      Servant("h", 10, 1, 1),
-      Servant("i", 4, 2, 2),
-      Servant("j", 1, 1, 3)]
-    random.shuffle(self.listServant)
+  def __init__( self, player ):
+    self.player = player
 
-  #Return the last card of the deck and remove it
-  def draw(self):
-    return self.listServant.pop()
-  
-  def count(self):
-    return len(self.listServant)
+    self.deckPlayer= {}
 
-  #def __repr__(self):
-     #return "[LIST DECK]: " + str(self.count())
+    with open('cards/'+self.player.name+'.csv', 'r') as f:
+      reader = csv.DictReader( f, delimiter = ',' )
+      for line in reader:
+        self.deckPlayer[  line["id_card"] ] = { 'type' : line["type"], 'name' : line["name"], 'attack' :  line["attack"], 'power' : line["power"], 'defense' : line["defense"], 'popularity' : line["popularity"]}
 
-    
+  #new handw
+  def getCard( self ) :
+   rd = random.choice( list ( self.deckPlayer.keys() ) )
+   ca = Card ( self.deckPlayer[  rd ] )
+   # on vire la carte du deck
+   self.deckPlayer.pop(rd, None)
+   return ca

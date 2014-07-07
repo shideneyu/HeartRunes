@@ -1,0 +1,5 @@
+id_terrain,type,name,description,bonus,malus
+1,1,Election locale,Les élections locales bénéficient aux partis de gauche, 2,1
+4,1,Delinquance en hausse,La délnquance renforce les candidats de droite,4,2
+2,2,Justice,La justice est un atout de poids pour un politicien,4,2
+3,2,Droits de l'homme,Theme de prédilection de certains,4,2
