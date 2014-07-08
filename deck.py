@@ -9,7 +9,7 @@ class Deck:
 
     self.deckPlayer= {}
 
-    with open('cards/'+self.player.name+'.csv', 'r') as f:
+    with open('datas/'+self.player.name+'.csv', 'r') as f:
       reader = csv.DictReader( f, delimiter = ',' )
       for line in reader:
         self.deckPlayer[  line["id_card"] ] = { 'type' : line["type"], 'name' : line["name"], 'attack' :  line["attack"], 'power' : line["power"], 'defense' : line["defense"], 'popularity' : line["popularity"]}

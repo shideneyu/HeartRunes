@@ -4,13 +4,6 @@ class Hand:
         #new Hand
         for x in range(5):
             self.cardsHand[ x ] = deck.getCard()
-        #
-        for x in range( len ( self.cardsHand ) ):
-          current = self.cardsHand[ x ]
-          if( current.type == "1"):
-              print ( "CS  - nom : " +current.name )
-          else:
-              print ( "nom : " +current.name )
 
     #
     def pickCard(self, name):
@@ -33,5 +26,8 @@ class Hand:
     #
     def getHand( self ):
         for x in range( len ( self.cardsHand ) ):
-            current = self.cardsHand[ x ]
-            print ( current.name )
+          current = self.cardsHand[ x ]
+          if( current.type == "1"):
+              print (  "CS  - nom : " +current.name +" - Attack : " +current.attack + " - Puissance " + current.power+ " - Defense" +current.defense )
+          else:
+              print ( current.name +" - Attack : " +current.attack + " - Puissance " + current.power+ " - Defense" +current.defense )
