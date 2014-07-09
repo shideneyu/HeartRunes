@@ -81,8 +81,10 @@ class Game:
             player.hand.pickCard(player.deck.getCard())
             player.hand.getHand()
 
-            card = int(input("Quel carte compte tu jouer ? "))
-            if not card :
+            card = int( input("Quel carte compte tu jouer ? ") )
+            if ( card >= 0 ):
+                cardName =  player.hand.getCard(card)
+                print("Vous avez jouer " + cardName.name )
                 player.playCard( card )
 
             #ICI LES ATTAQUESSSSSSS

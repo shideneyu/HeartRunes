@@ -4,7 +4,8 @@ class Hand:
         self.deck = deck
         #new Hand
         for x in range(5):
-            self.cardsHand.insert( 0, deck.getCard() )
+            self.cardsHand.append(deck.getCard())
+
     #
     def count(self):
         return len( self.cardsHand )
@@ -13,6 +14,10 @@ class Hand:
     def pickCard( self, card ):
         self.cardsHand.append(self.deck.getCard())
         return self.cardsHand
+
+    #
+    def getCard( self, card ):
+        return self.cardsHand[card]
 
     #
     def playCard( self, card ):
@@ -27,9 +32,13 @@ class Hand:
     #
     def getHand( self ):
         print ("ID | CS | NOM \t\t| ATTAQUE \t| PUISSANCE \t| DEFENSE")
-        for x in range( len ( self.cardsHand ) ):
-            current = self.cardsHand[ x ]
+        i = 0
+        tmp =  self.cardsHand[0]
+        print( tmp.name )
+
+        for current in self.cardsHand:
             if(current.type == "1"):
-                print ( str(x)+"  | x | "+current.name+" \t| " +current.attack + " \t| " + current.power+ " \t| " +current.defense )
+                print ( str(i)+"  | x | "+current.name+" \t| " +current.attack + " \t| " + current.power+ " \t| " +current.defense )
             else:
-                print ( str(x) + "  |    | " +current.name +" \t| " +current.attack + " \t| " + current.power+ " \t| " +current.defense )
+                print ( str(i) + "  |    | " +current.name +" \t| " +current.attack + " \t| " + current.power+ " \t| " +current.defense )
+                i +=1
