@@ -5,7 +5,7 @@ def main():
     pygame.init()
     print("bonjour monde")
     pygame.display.set_caption("Menu")
-    fenetre = pygame.display.set_mode((960, 720)) 
+    fenetre = pygame.display.set_mode((960, 720))
     next =1
     font = pygame.image.load("images/background.jpg").convert()
     play = pygame.image.load("images/start.png").convert()
@@ -27,7 +27,7 @@ def main():
                 if ( x in range(418,543)) and (y in range(369,398)):
                     next = 0
                 elif ( x in range(418,543)) and (y in range (173,202)):
-                    start_player(fenetre,game)        
+                    start_player(fenetre,game)
 
     pygame.quit()
 

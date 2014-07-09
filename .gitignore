@@ -5,3 +5,4 @@
 .settings/org.eclipse.core.resources.prefs
 >>>>>>> origin/master
 *.pyc
+*.db

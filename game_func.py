@@ -39,10 +39,10 @@ def start_game(fenetre,game):
 			#if event.type == VIDEORESIZE:#gere le redimensionnement de la fenetre
 				#if event.w > 500 or event.h > 500:
 			if event.type == KEYDOWN and event.key == K_SPACE:
-				print("Espace")	
+				print("Espace")
 			if event.type == MOUSEBUTTONDOWN:
 				print("text")
-				#if event.button == 1:	
+				#if event.button == 1:
 					#card_x = event.pos[0]
 					#card_y = event.pos[1]
 		fenetre.blit(fond, (0,0))
@@ -60,7 +60,7 @@ def start_game(fenetre,game):
 		#fenetre.blit(mana_bar, (500,75))
 		#fenetre.blit(mana_bar2, (490,540))
 		game.showScores(fenetre)
-		pygame.display.flip()	
+		pygame.display.flip()
 
 
 def generate_element(fenetre):
@@ -72,7 +72,7 @@ def generate_element(fenetre):
 	fenetre.blit(fn, (400,100))
 	fenetre.blit(ps, (100,350))
 	fenetre.blit(pc, (400,350))
-	yellow = (255, 255, 0)    
+	yellow = (255, 255, 0)
 	white = (255,255,255)
 	myfont = pygame.font.SysFont("Comic Sans MS", 30)
 	label = myfont.render("choisir un parti", 1, yellow)
@@ -83,7 +83,7 @@ def start_player(fenetre,game):
 	timer = 15
 	history = ""
 
-	yellow = (255, 255, 0)    
+	yellow = (255, 255, 0)
 	white = (255,255,255)
 	myfont = pygame.font.SysFont("Comic Sans MS", 30)
 	#game.setPlayers()
@@ -135,9 +135,9 @@ def start_player(fenetre,game):
 				elif ( x in range(400,650)) and (y in range (100,300)):
 					cpt+=1
 					flagfn+=1
-					if(flagfn==1 and cpt<3):	
+					if(flagfn==1 and cpt<3):
 						label2 = myfont.render("Player"+str(cpt)+" Vous avez choisi le parti front national", 1, yellow)
-						
+
 						if (cpt==2):
 							fenetre.blit(fond,(0,0))
 							fenetre.blit(play,(320,560))
@@ -178,6 +178,6 @@ def start_player(fenetre,game):
 						print("pc")
 						player = 3
 						game.setPlayers(cpt-1,player)
-		
+
 				elif ( x in range(320,600)) and (y in range (560,800)):
 						start_game(fenetre,game)
