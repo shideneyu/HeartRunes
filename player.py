@@ -1,6 +1,6 @@
 from deck import Deck
 from hand import Hand
-
+#class player
 class Player:
     
     def __init__(self, name, popularity = 50 ):
