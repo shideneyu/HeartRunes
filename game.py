@@ -75,9 +75,9 @@ class Game:
                 ground.groundAction(self.players)
 
             #
-            print("\n\n- Tour " + str(self.tour) + " -----------------\n")
+            print("- Tour " + str(self.tour) + " -----------------\n")
             print("Votre popularite actuelle : " + str(player.popularity) +"%")
-            print("Hey "+player.name+ ", a ton tour, voici ta main -------\n")
+            print("Hey "+player.name+", a ton tour, voici ta main -------\n")
             player.hand.pickCard(player.deck.getCard())
             player.hand.getHand()
 
@@ -86,24 +86,8 @@ class Game:
                 cardName =  player.hand.getCard(card)
                 print("Vous avez jouer " + cardName.name )
                 player.playCard( card )
-            else:
-                print("Vous n'avez jouer aucune carte ")
 
             #ICI LES ATTAQUESSSSSSS
-            if( self.tour > 1):
-                print("\n\n\n###### ATTAQUE : Voici vos cartes et celles de votre adversaire actuellement en jeu.")
-                print("\n### Vous ")
-                player.getCardsOnGame();
-                tmp = ((self.tour+1) % 2 )
-                playerO = self.players[tmp]
-                print("\n### Adversaire")
-                playerO.getCardsOnGame();
-                card0 = input("Avec quelle carte souhaite tu attaquer ? ")
-                print("\n\n\n")
-                playerO.getCardsOnGame();
-                card1 = input("Quelle carte souhaite tu attaquer ? ")
-
-            #player.attackCard( card0, card1 )
 
             if (player.popularity >= 100 or player.popularity <= 0):
                 self.continueGame = False

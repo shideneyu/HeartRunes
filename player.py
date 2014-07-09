@@ -28,13 +28,5 @@ class Player:
     self.cardsInGame.append(self.hand.playCard( card ))
 
   #
-  def getCardsOnGame(self):
-    print ("ID | NOM \t\t| ATTAQUE \t| PUISSANCE \t| DEFENSE")
-    i = 0
-    for current in self.cardsInGame:
-      print ( str(i) + "  | " +current.name +" \t| " +current.attack + " \t| " +current.defense )
-      i +=1
-
-  #
   def getHand(self):
     return self.getCard()

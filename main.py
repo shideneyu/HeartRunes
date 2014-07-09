@@ -11,8 +11,7 @@ else:
 #
 from player import Player
 from game import Game
-import pygame
-from pygame.locals import *
+
 # Initialize variables
 turn_count = 0
 timer = 15

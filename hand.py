@@ -33,10 +33,12 @@ class Hand:
     def getHand( self ):
         print ("ID | CS | NOM \t\t| ATTAQUE \t| PUISSANCE \t| DEFENSE")
         i = 0
+        tmp =  self.cardsHand[0]
+        print( tmp.name )
+
         for current in self.cardsHand:
             if(current.type == "1"):
-                print ( str(i)+"  | x | "+current.name+" \t| " +current.attack + " \t| " +current.defense )
+                print ( str(i)+"  | x | "+current.name+" \t| " +current.attack + " \t| " + current.power+ " \t| " +current.defense )
             else:
-                print ( str(i) + "  |    | " +current.name +" \t| " +current.attack + " \t| " +current.defense )
-            #
-            i +=1
+                print ( str(i) + "  |    | " +current.name +" \t| " +current.attack + " \t| " + current.power+ " \t| " +current.defense )
+                i +=1
