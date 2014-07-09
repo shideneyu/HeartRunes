@@ -53,14 +53,12 @@ class Game:
 
     #Show scores
     def showScores(self,fenetre):
-        print("Intentions de vote:")
         x=1
         label ={}
         myfont = pygame.font.SysFont("Comic Sans MS", 30)
         yellow = (255, 255, 0) 
         for x in range(len(self.players)):
             currentPlayer = self.players[x]
-            print(currentPlayer.name + ":" +str(currentPlayer.popularity) +"%")
             label[x] = myfont.render(currentPlayer.name + ":" +str(currentPlayer.popularity) +"%", 1, yellow)
         fenetre.blit(label[0], (350,10))
         fenetre.blit(label[1], (350,510))

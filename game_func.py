@@ -5,7 +5,7 @@ def start_game(fenetre,game):
 	pygame.display.set_caption("Titre")
 
 	#initiliase une fenetre redimmensionnable avec une largeur et une hauteur
-	fenetre = pygame.display.set_mode((800, 600),RESIZABLE)
+	fenetre = pygame.display.set_mode((800, 650),RESIZABLE)
 	#permet de charger une image de fond qui prend la taille de la fenetre
 	fond = pygame.image.load("background.jpg").convert()
 	fenetre.blit(fond, (0,0))
@@ -24,7 +24,7 @@ def start_game(fenetre,game):
 	#place l'image
 	card_x = 0
 	card_y = 0
-	fenetre.blit(card, (card_x,card_y))
+	#fenetre.blit(card, (card_x,card_y))
 	fenetre.blit(card2, (200,300))
 	game.showScores(fenetre)
 	#game.startGame()
@@ -41,17 +41,17 @@ def start_game(fenetre,game):
 				print("Espace")	
 			if event.type == MOUSEBUTTONDOWN:
 				print("text")
-				if event.button == 1:	
-					card_x = event.pos[0]
-					card_y = event.pos[1]
+				#if event.button == 1:	
+					#card_x = event.pos[0]
+					#card_y = event.pos[1]
 		fenetre.blit(fond, (0,0))
-		fenetre.blit(card, (card_x,card_y))
-		fenetre.blit(card2, (100,400))
-		fenetre.blit(card3, (200,400))
-		fenetre.blit(card4, (300,400))
-		fenetre.blit(card5, (300,200))
-		fenetre.blit(card6, (200,200))
-		fenetre.blit(card7, (100,200))
+		fenetre.blit(card, (100,500))
+		fenetre.blit(card2, (100,350))
+		fenetre.blit(card3, (200,350))
+		fenetre.blit(card4, (300,350))
+		fenetre.blit(card5, (300,150))
+		fenetre.blit(card6, (200,150))
+		fenetre.blit(card7, (100,150))
 		fenetre.blit(health_bar, (500,30))
 		fenetre.blit(health_bar2, (490,500))
 		fenetre.blit(mana_bar, (500,75))
@@ -177,5 +177,4 @@ def start_player(fenetre,game):
 						game.setPlayers(cpt-1,player)
 		
 				elif ( x in range(320,600)) and (y in range (560,800)):
-					if(cpt==2):
 						start_game(fenetre,game)
