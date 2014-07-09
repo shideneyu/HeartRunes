@@ -1,6 +1,6 @@
-import csv
 import random
 from player import Player
+from ground import Ground
 
 class Game:
     def __init__(self):
@@ -9,10 +9,6 @@ class Game:
         self.continueGame = True
         self.playerList = {0:'ump',1:'fn', 2:'ps', 3:'communistes'}
         self.tour = 0
-        with open('datas/themes.csv', 'r') as f:
-            reader = csv.DictReader(f, delimiter=',')
-            for line in reader:
-                self.terrains[line["id_theme"]] = {'type':line["type"],'name':line["name"], 'bonus': line["bonus"], 'malus':line["malus"], 'description':line["description"]}
 
     #Combat de deux cartes entre elles
     def fight(self, player1, player2, card1, card2):
@@ -75,7 +71,8 @@ class Game:
 
             #Quand les deux ont joues on invoque un nouveau terrain
             if( ( self.tour % 2 ) == 0):
-                self.getTheme()
+                ground = Ground()
+                ground.groundAction(self.players)
 
             #
             print("- Tour " + str(self.tour) + " -----------------\n")
