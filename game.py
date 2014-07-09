@@ -1,3 +1,4 @@
+import pygame
 import random
 from player import Player
 from ground import Ground
@@ -25,27 +26,22 @@ class Game:
         winner.popularity += 2
 
     # Create the new players
-    def setPlayers(self):
-        print("Veuillez saisir le chiffre correspondant à un des parti")
-        playCanStart = False
-        while(playCanStart==False):
-            self.showPlayersAvaible()
-            player1 = int(input("Joueur 1:Quel parti politique souhaitez-vous choisir ? "))
+    def setPlayers(self,i,player):
+       
+        if i==0:
+            player1 = player
             if player1 in self.playerList:
-                self.players[0] = Player( self.playerList[player1] )
-                print("\n ----> Joueur 1, vous avez choisi : " +self.players[0].name + "\n")
-                playCanStart = True
+                self.players[i] = Player(self.playerList[player1])
+                print("\n ----> Joueur 1, vous avez choisi : " +self.players[i].name + "\n")
             else:
                 print("Il faut choisir parmis les personnages existants" + player1)
         #
-        playCanStart = False
-        while(playCanStart == False):
-            self.showPlayersAvaible()
-            player2= int(input("Joueur 2:Quel parti politique souhaitez-vous choisir ? "))
+        
+        if i==1:
+            player2= player
             if player2  in self.playerList:
-                self.players[1] = Player(self.playerList[player2])
-                print("\n ----> Joueur 2, vous avez choisi:" + self.players[1].name + "\n")
-                playCanStart = True
+                self.players[i] = Player(self.playerList[player2])
+                print("\n ----> Joueur 2, vous avez choisi:" + self.players[i].name + "\n")
             else:
                 print("Il faut choisir parmis les personnages existants")
         #
@@ -56,11 +52,19 @@ class Game:
             print (str(x)+" -- " +str(current))
 
     #Show scores
-    def showScores(self):
+    def showScores(self,fenetre):
         print("Intentions de vote:")
+        x=1
+        label ={}
+        myfont = pygame.font.SysFont("Comic Sans MS", 30)
+        yellow = (255, 255, 0) 
         for x in range(len(self.players)):
             currentPlayer = self.players[x]
             print(currentPlayer.name + ":" +str(currentPlayer.popularity) +"%")
+            label[x] = myfont.render(currentPlayer.name + ":" +str(currentPlayer.popularity) +"%", 1, yellow)
+        fenetre.blit(label[0], (350,10))
+        fenetre.blit(label[1], (350,510))
+        pygame.display.update(0, 0, 800, 600)
 
     #
     def startGame(self):

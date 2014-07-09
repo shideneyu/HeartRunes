@@ -1,5 +1,4 @@
 import csv, random
-from player import Player
 
 class Ground:
 	def __init__(self):
@@ -25,11 +24,3 @@ class Ground:
 		else :
 			players[1].popularity += bonus
 			players[0].popularity += malus
-		
-
-
-
-
-
-
-
