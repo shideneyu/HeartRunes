@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+
 import sys, select, os
-# If using windows, else using linux/mac
+from game import Game
+# Usefull for timer
 if os.name == 'nt':
     import msvcrt, time
 else:
@@ -26,12 +28,3 @@ game = Game()
 game.setPlayers()
 game.showScores()
 game.startGame()
- #current_player = playerOne
-#current_opponent = playerTwo
-
-# Stop the game if incorrect answer
-def game_loss():
-    print ("Incorrect! " + current_player.name + " lost this game!")
-    sys.exit()
-
-
