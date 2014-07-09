@@ -26,8 +26,8 @@ class Hand:
     #
     def getHand( self ):
         for x in range( len ( self.cardsHand ) ):
-          current = self.cardsHand[ x ]
-          if( current.type == "1"):
-              print (  "CS  - nom : " +current.name +" - Attack : " +current.attack + " - Puissance " + current.power+ " - Defense" +current.defense )
-          else:
-              print ( current.name +" - Attack : " +current.attack + " - Puissance " + current.power+ " - Defense" +current.defense )
+            current = self.cardsHand[ x ]
+            if( current.type == "1"):
+                print (  "CS  - nom : " +current.name +" - Attack : " +current.attack + " - Puissance " + current.power+ " - Defense" +current.defense )
+            else:
+                print ( current.name +" - Attack : " +current.attack + " - Puissance " + current.power+ " - Defense" +current.defense )

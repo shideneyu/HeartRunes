@@ -44,14 +44,14 @@ class Game:
         #
         playCanStart = False
         while(playCanStart == False):
-         self.showPlayersAvaible()
-         player2= int(input("Joueur 2:Quel parti politique souhaitez-vous choisir ? "))
-         if player2  in self.playerList:
-            self.players[1] = Player(self.playerList[player2])
-            print("\n ----> Joueur 2, vous avez choisi:" + self.players[1].name + "\n")
-            playCanStart = True
-        else:
-            print("Il faut choisir parmis les personnages existants")
+            self.showPlayersAvaible()
+            player2= int(input("Joueur 2:Quel parti politique souhaitez-vous choisir ? "))
+            if player2  in self.playerList:
+                self.players[1] = Player(self.playerList[player2])
+                print("\n ----> Joueur 2, vous avez choisi:" + self.players[1].name + "\n")
+                playCanStart = True
+            else:
+                print("Il faut choisir parmis les personnages existants")
         #
     #
     def showPlayersAvaible(self):
@@ -95,6 +95,6 @@ class Game:
 
     # Timer for linux/mac
     def getTheme(self):
-      rd = random.choice(list( self.terrains.keys() ) )
-      print("\n - 000000000 THEME : ")
-      print(str(self.terrains[rd])+ "\n")
+        rd = random.choice(list( self.terrains.keys() ) )
+        print("\n - 000000000 THEME : ")
+        print(str(self.terrains[rd])+ "\n")
