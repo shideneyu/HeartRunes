@@ -3,21 +3,22 @@ import csv, random
 class Ground:
 	def __init__(self):
 		self.themes = {}
+		self.previousTheme = - 1
 		with open('datas/themes.csv', 'r') as f:
 			reader = csv.DictReader(f, delimiter=',')
 			for line in reader:
 				self.themes[line["id"]] = {'type':line["type"],'name':line["name"],'description':line["description"],'bonus':line["bonus"],'malus':line["malus"]}
 	
 	def groundAction(self, players):
-		previousTheme = - 1
 		
-		if previousTheme != -1:
-			self.attackBonusOnAllCards(players, previousTheme['type'], int(previousTheme["bonus"]) * -1) #Reverse the effect
+		if self.previousTheme != -1:
+			if self.previousTheme['type'] != 1:
+				self.attackBonusOnAllCards(players, self.previousTheme['type'], int(self.previousTheme["bonus"]) * -1) #Reverse the effect
 		
 		randomIntTheme = random.randint(1, len(self.themes))
 		randomBits = random.getrandbits(1)
 		theme = self.themes[str(randomIntTheme)]
-		previousTheme = theme
+		self.previousTheme = theme
 		typeOf = theme['type']
 		bonus = int(theme["bonus"])
 		malus = int(theme["malus"])
