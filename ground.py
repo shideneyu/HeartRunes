@@ -10,9 +10,8 @@ class Ground:
 				self.themes[line["id"]] = {'type':line["type"],'name':line["name"],'description':line["description"],'bonus':line["bonus"],'malus':line["malus"]}
 
 	def groundAction(self, players):
-		randomIntTheme = random.randint(1, 5) #Five themes
+		randomIntTheme = random.randint(1, len(self.themes))
 		randomBits = random.getrandbits(1)
-		randomInt = random.randint(1, 5)
 		theme = self.themes[str(randomIntTheme)]
 		type = int(theme['type'])
 		bonus = int(theme["bonus"])
@@ -20,7 +19,7 @@ class Ground:
 		print('Theme:' + theme['name'])
 		print('Description:' + theme['description'])
 
-		if randomInt == 1 :
+		if randomBits == 1 :
 			players[0].popularity += bonus
 			players[1].popularity += malus
 		else :
