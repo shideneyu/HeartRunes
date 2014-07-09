@@ -1,4 +1,5 @@
 import csv, random
+from player import Player
 
 class Ground:
 	def __init__(self):
@@ -11,18 +12,21 @@ class Ground:
 	def groundAction(self, players):
 		randomIntTheme = random.randint(1, 5) #Five themes
 		randomBits = random.getrandbits(1)
-		randomInt = random.randint(5, 10)
+		randomInt = random.randint(1, 5)
 		theme = self.themes[str(randomIntTheme)]
 		type = int(theme['type'])
+		bonus = int(theme["bonus"])
+		malus = int(theme["malus"])
 		print('Theme:' + theme['name'])
 		print('Description:' + theme['description'])
 
 		if randomInt == 1 :
-			player1 = players[0]
-			player2 = players[1]
+			players[0].popularity += bonus
+			players[1].popularity += malus
 		else :
-			player1 = players[1]
-			player2 = players[0]
+			players[1].popularity += bonus
+			players[0].popularity += malus
+		
 
 
 

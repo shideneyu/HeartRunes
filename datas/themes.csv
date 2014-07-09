@@ -1,6 +1,6 @@
 id,type,name,description,bonus,malus
-1,1,Theme1,Description1,0,0
-2,1,Theme2,Description2,0,-1
-3,1,Theme3,Description3,1,1
-4,1,Theme4,Description4,0,1
-5,5,Theme5,Description5,1,-1
+1,1,Crise économique,Malus de popularité pour les deux partis,-5,-5
+2,1,Mauvais discours,Malus de popularité pour un des deux partis suite à un mauvais discours,0,-5
+3,1,Election locale,Bonus de popularité pour les deux partis,5,5
+4,1,Justice,Bonne action pour un des deux partis,0,5
+5,5,Scandale sexuel,Malus de popularité pour un des partis et bonus pour l'autre,5,-5
