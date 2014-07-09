@@ -9,7 +9,6 @@ else:
     from select import select
 
 #
-from servant import Servant
 from player import Player
 from game import Game
 

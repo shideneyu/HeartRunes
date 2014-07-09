@@ -36,7 +36,7 @@ class Game:
             self.showPlayersAvaible()
             player1 = int(input("Joueur 1:Quel parti politique souhaitez-vous choisir ? "))
             if player1 in self.playerList:
-                self.players[0] = Player(self.playerList[player1])
+                self.players[0] = Player( self.playerList[player1] )
                 print("\n ----> Joueur 1, vous avez choisi : " +self.players[0].name + "\n")
                 playCanStart = True
             else:
@@ -73,19 +73,20 @@ class Game:
             currentPlayer = self.tour % 2
             player = self.players[currentPlayer]
 
-            #Quand les deux ont joués on invoque un nouveau terrain
+            #Quand les deux ont joues on invoque un nouveau terrain
             if( ( self.tour % 2 ) == 0):
                 self.getTheme()
 
             #
             print("- Tour " + str(self.tour) + " -----------------\n")
-            print("Votre popularité actuelle : " + str(player.popularity) +"%")
+            print("Votre popularite actuelle : " + str(player.popularity) +"%")
             print("Hey "+player.name+", a ton tour, voici ta main -------\n")
-            player.hand.pickCard( player.deck.getCard() )
+            player.hand.pickCard(player.deck.getCard())
             player.hand.getHand()
 
             card = int(input("Quel carte compte tu jouer ? "))
-            print("Tu as joué")
+            if not card :
+                player.playCard( card )
 
             #ICI LES ATTAQUESSSSSSS
 
