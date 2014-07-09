@@ -10,7 +10,7 @@ class Deck:
         with open('datas/'+self.player.name+'.csv', 'r') as f:
             reader = csv.DictReader( f, delimiter = ',' )
             for line in reader:
-                self.deckPlayer[line["id_card"] ] = { 'type' : line["type"], 'name' : line["name"], 'attack' :  line["attack"], 'power' : line["power"], 'defense' : line["defense"], 'popularity' : line["popularity"]}
+                self.deckPlayer[line["id_card"]] = {'type':line["type"], 'name' : line["name"], 'attack' :  line["attack"], 'power' : line["power"], 'defense' : line["defense"], 'popularity' : line["popularity"], 'favorite':line["favorite"]}
 
     def getCard( self ) :
         rd = random.choice( list ( self.deckPlayer.keys() ) )

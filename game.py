@@ -72,6 +72,7 @@ class Game:
 
     #
     def startGame(self):
+        ground = Ground()
         # Tour par tour
         while(self.continueGame == True):
             currentPlayer = self.tour % 2
@@ -79,7 +80,6 @@ class Game:
 
             #Quand les deux ont joues on invoque un nouveau terrain
             if( ( self.tour % 2 ) == 0):
-                ground = Ground()
                 ground.groundAction(self.players)
 
             #
