@@ -11,8 +11,6 @@ from servant import Servant
 from player import Player
 from game import Game
 
-# Set the servants inside an array
-
 # Initialize variables
 turn_count = 0
 timer = 15

@@ -81,6 +81,7 @@ class Game:
             print("- Tour " + str(self.tour) + " -----------------\n")
             print("Votre popularité actuelle : " + str(player.popularity) +"%")
             print("Hey "+player.name+", a ton tour, voici ta main -------\n")
+            player.hand.pickCard( player.deck.getCard() )
             player.hand.getHand()
 
             card = int(input("Quel carte compte tu jouer ? "))
