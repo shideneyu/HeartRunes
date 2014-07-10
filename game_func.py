@@ -7,7 +7,7 @@ def start_game(fenetre,game):
 	#initiliase une fenetre redimmensionnable avec une largeur et une hauteur
 	fenetre = pygame.display.set_mode((800, 650),RESIZABLE)
 	#permet de charger une image de fond qui prend la taille de la fenetre
-	fond = pygame.image.load("background.jpg").convert()
+	fond = pygame.image.load("images/background2.jpg").convert()
 	fenetre.blit(fond, (0,0))
 	card = pygame.image.load("images/placecard.png").convert()
 	#.convert_alpha() pour la transparence
@@ -60,41 +60,42 @@ def start_game(fenetre,game):
 		#fenetre.blit(mana_bar, (500,75))
 		#fenetre.blit(mana_bar2, (490,540))
 		game.showScores(fenetre)
+		game.startGame(fenetre)
 		pygame.display.flip()
 
-
+#
 def generate_element(fenetre):
 	ump = pygame.image.load("images/ump.jpg").convert()
 	fn = pygame.image.load("images/fn.jpg").convert()
-	ps = pygame.image.load("images/ps.jpg").convert()
+	ps = pygame.image.load("images/ps.png").convert()
 	pc = pygame.image.load("images/pc.png").convert()
 	fenetre.blit(ump, (100,100))
 	fenetre.blit(fn, (400,100))
 	fenetre.blit(ps, (100,350))
 	fenetre.blit(pc, (400,350))
-	yellow = (255, 255, 0)
+	yellow = (0, 0, 0)
 	white = (255,255,255)
-	myfont = pygame.font.SysFont("Comic Sans MS", 30)
-	label = myfont.render("choisir un parti", 1, yellow)
+	myfont = pygame.font.SysFont("Arial", 30)
+	label = myfont.render("Veuillez choisir un parti", 1, yellow)
 	fenetre.blit(label, (250,10))
-
+#
 def start_player(fenetre,game):
 	turn_count = 0
 	timer = 15
 	history = ""
 
-	yellow = (255, 255, 0)
+	yellow = (0, 0, 0)
 	white = (255,255,255)
-	myfont = pygame.font.SysFont("Comic Sans MS", 30)
+	myfont = pygame.font.SysFont("Arial", 30)
 	#game.setPlayers()
 	#game.showScores()
 	#game.startGame()
 	pygame.display.set_caption("Titre")
 
 	#initiliase une fenetre redimmensionnable avec une largeur et une hauteur
-	fenetre = pygame.display.set_mode((800, 600),RESIZABLE)
+	fenetre = pygame.display.set_mode((900, 600),RESIZABLE)
 	#permet de charger une image de fond qui prend la taille de la fenetre
-	fond = pygame.image.load("background.jpg").convert()
+	fond = pygame.image.load("images/background2.jpg").convert()
 	fenetre.blit(fond, (0,0))
 	play = pygame.image.load("images/start.png").convert()
 	generate_element(fenetre)
