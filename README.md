@@ -1,4 +1,4 @@
-HeartRunes
+House of Cards : French Edition
 ==========
 Pré-requis pour le lancement du jeu "House of Cards : French Edition"
 
