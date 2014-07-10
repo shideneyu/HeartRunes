@@ -10,6 +10,8 @@ class Game:
         self.continueGame = True
         self.playerList = {0:'ump',1:'fn', 2:'ps', 3:'communistes'}
         self.tour = 0
+        self.isWin = False #Si le dernier joueur a gagner ou non.
+        self.nameGameOver = False #le nom du dernier joueur
 
     #Combat de deux cartes entre elles
     def  attackCard(self, currentPlayer, card0, card1):
@@ -124,7 +126,14 @@ class Game:
 
                 self.attackCard(currentPlayer, player.getCard(int(card0)) , playerO.getCard(int(card1)))
 
-                if (player.popularity >= 100 or player.popularity <= 0):
+                if (player.popularity >= 100 ):
+                    self.isWin = True
+                    self.nameGameOver = player.name
+                    self.continueGame = False
+                    
+                if (player.popularity <= 0):
+                    self.isWin = False
+                    self.nameGameOver = player.name
                     self.continueGame = False
             #Next
             self.tour += 1

@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 
 def start_game(fenetre,game):
-	pygame.display.set_caption("Titre")
+	pygame.display.set_caption("House of Cards : French Edition")
 
 	#initiliase une fenetre redimmensionnable avec une largeur et une hauteur
 	fenetre = pygame.display.set_mode((800, 650),RESIZABLE)
@@ -90,7 +90,7 @@ def start_player(fenetre,game):
 	#game.setPlayers()
 	#game.showScores()
 	#game.startGame()
-	pygame.display.set_caption("Titre")
+	pygame.display.set_caption("House of Cards : French Edition")
 
 	#initiliase une fenetre redimmensionnable avec une largeur et une hauteur
 	fenetre = pygame.display.set_mode((900, 600),RESIZABLE)

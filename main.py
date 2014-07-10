@@ -4,7 +4,7 @@ from game import Game
 def main():
     pygame.init()
     print("bonjour monde")
-    pygame.display.set_caption("Menu")
+    pygame.display.set_caption("House of Cards : French Edition")
     fenetre = pygame.display.set_mode((960, 720))
     next =1
     font = pygame.image.load("images/background.jpg").convert()
@@ -29,6 +29,13 @@ def main():
                 elif ( x in range(418,543)) and (y in range (173,202)):
                     start_player(fenetre,game)
 
+    GameOverText = "Le partis " + game.nameGameOver + " à "
+    if(game.isWin):
+        GameOverText += "gagné"
+    else:
+        GameOverText += "perdu"
+    print(GameOverText)    
+    
     pygame.quit()
 
 if __name__ == "__main__":
