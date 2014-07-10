@@ -3,11 +3,11 @@ id,type,name,description,bonus,malus
 2,1,Mauvais discours,Malus de popularité pour un des deux partis suite à un mauvais discours,0,-5
 3,1,Election locale,Bonus de popularité pour les deux partis,5,5
 4,1,Manifestation,Bonus de popularité pour un des deux partis,0,5
-5,5,Scandale sexuel,Malus de popularité pour un des partis et bonus pour l'autre,5,-5
+5,1,Scandale sexuel,Malus de popularité pour un des partis et bonus pour l'autre,5,-5
 6,2,Affaires étrangères,Thème des affaires étrangères,5,-2
-7,2,Ecologie,Thème de l'écologie,5,0
-8,2,Éducation,Thème de l'éducation,5,0
-9,2,Justice,Thème de la justice,5,0
-10,2,Santé,Thème de la santé,5,0
-11,2,Défense,Thème de la défense,5,0
-12,2,Culture,Thème de la culture,5,0
+7,3,Ecologie,Thème de l'écologie,5,0
+8,4,Éducation,Thème de l'éducation,5,0
+9,5,Justice,Thème de la justice,5,0
+10,6,Santé,Thème de la santé,5,0
+11,7,Défense,Thème de la défense,5,0
+12,8,Culture,Thème de la culture,5,0
