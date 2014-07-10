@@ -13,11 +13,14 @@ def main():
     font = pygame.image.load("images/background.jpg").convert()
     play = pygame.image.load("images/start.png").convert()
     quit = pygame.image.load("images/quit.png").convert()
+    soundOn = pygame.image.load("images/soundOn.png")
+    soundOff = pygame.image.load("images/soundOff.png")
     icon_32x32 = pygame.image.load("images/icon.png")
     pygame.display.set_icon(icon_32x32)
     fenetre.blit(font,(0,0))
     fenetre.blit(play,(418,173))
     fenetre.blit(quit, (418,369))
+    fenetre.blit(soundOn, (460,220))
     pygame.display.flip()
     quit_r = quit.get_rect()
     quit_r.x, quit_r.y = 418, 369
@@ -33,6 +36,11 @@ def main():
                     next = 0
                 elif ( x in range(418,543)) and (y in range (173,202)):
                     start_player(fenetre,game)
+                elif ( x in range(460,588)) and (y in range (220,348)):
+                    if(pygame.mixer.music.get_volume() == 0):
+                        pygame.mixer.music.set_volume(0.5)
+                    else:
+                        pygame.mixer.music.set_volume(0)
 
     #Game Over
     for x in range(10):
