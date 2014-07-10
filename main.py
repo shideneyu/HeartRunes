@@ -10,6 +10,8 @@ def main():
     font = pygame.image.load("images/background.jpg").convert()
     play = pygame.image.load("images/start.png").convert()
     quit = pygame.image.load("images/quit.png").convert()
+    icon_32x32 = pygame.image.load("images/icon.png")
+    pygame.display.set_icon(icon_32x32)
     fenetre.blit(font,(0,0))
     fenetre.blit(play,(418,173))
     fenetre.blit(quit, (418,369))
