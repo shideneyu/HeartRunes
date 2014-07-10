@@ -12,8 +12,13 @@ class Game:
         self.tour = 0
 
     #Combat de deux cartes entre elles
-    def fight(self, player1, player2, card1, card2):
+    def  attackCard(self, card0, card1):
+
+        print(card.name + "lance une attaque sur " +card1.name)
         if(card1.power > card2.defense):
+            difference = card1.power - card2.defense
+            difference = difference/10
+            print(card.name + " inflige" +difference +" de dégats")
             winCard = card1
             loseCard = card2
             winner = player1
@@ -27,7 +32,7 @@ class Game:
 
     # Create the new players
     def setPlayers(self,i,player):
-       
+
         if i==0:
             player1 = player
             if player1 in self.playerList:
@@ -36,7 +41,7 @@ class Game:
             else:
                 print("Il faut choisir parmis les personnages existants" + player1)
         #
-        
+
         if i==1:
             player2= player
             if player2  in self.playerList:
@@ -56,16 +61,18 @@ class Game:
         x=1
         label ={}
         myfont = pygame.font.SysFont("Comic Sans MS", 30)
-        yellow = (255, 255, 0) 
+        yellow = (255, 255, 0)
         for x in range(len(self.players)):
             currentPlayer = self.players[x]
             label[x] = myfont.render(currentPlayer.name + ":" +str(currentPlayer.popularity) +"%", 1, yellow)
+        #
         fenetre.blit(label[0], (350,10))
         fenetre.blit(label[1], (350,510))
         pygame.display.update(0, 0, 800, 600)
 
     #
     def startGame(self):
+        ground = Ground()
         # Tour par tour
         while(self.continueGame == True):
             currentPlayer = self.tour % 2
@@ -73,7 +80,6 @@ class Game:
 
             #Quand les deux ont joues on invoque un nouveau terrain
             if( ( self.tour % 2 ) == 0):
-                ground = Ground()
                 ground.groundAction(self.players)
 
             #
@@ -105,15 +111,9 @@ class Game:
                 playerO.getCardsOnGame();
                 card1 = input("Quelle carte souhaite tu attaquer ? ")
 
-            #player.attackCard( card0, card1 )
+                self.attackCard(player.hand.getCard(card0), player.hand.getCard(card1))
 
-            if (player.popularity >= 100 or player.popularity <= 0):
-                self.continueGame = False
+                if (player.popularity >= 100 or player.popularity <= 0):
+                    self.continueGame = False
             #Next
             self.tour += 1
-
-    # Timer for linux/mac
-    def getTheme(self):
-        rd = random.choice(list( self.terrains.keys() ) )
-        print("\n - 000000000 THEME : ")
-        print(str(self.terrains[rd])+ "\n")
