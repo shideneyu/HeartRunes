@@ -10,7 +10,8 @@ class Game:
         self.continueGame = True
         self.playerList = {0:'ump',1:'fn', 2:'ps', 3:'communistes'}
         self.tour = 0
-        self.isWin = False #Si le dernier joueur a gagner ou non.
+        self.Winner = 0 #Si le dernier joueur a gagner ou non.
+        self.Loser = 0 #Si le dernier joueur a gagner ou non.
         self.nameGameOver = False #le nom du dernier joueur
 
     #Combat de deux cartes entre elles
@@ -30,17 +31,16 @@ class Game:
             winner = player
             loser = playerO
         else:
+            print(card0.name + " s'est attaque a plus fort que lui ! Il a perdu " +str(difference)+" de dégats")
             winCard = card1
             loseCard = card0
             winner = playerO
             loser = player
         #
         loser.deleteCardFromGame(loseCard)
-
         winner.popularity += difference/2
         loser.popularity -= int(difference)
         loseCard.popularity = int(card0.power) - int(card1.defense)
-        self.updateScore()
 
     # Create the new players
     def setPlayers(self,i,player):
@@ -135,32 +135,50 @@ class Game:
 
             #ICI LES ATTAQUESSSSSSS
             if( self.tour >= 1):
-                print("\n\n\n###### ATTAQUE : Voici vos cartes et celles de votre adversaire actuellement en jeu.")
+                print("\n\n###### ATTAQUE : Voici vos cartes et celles de votre adversaire actuellement en jeu.")
                 print("\n### Vous ")
                 player.getCardsOnGame();
                 tmp = ((self.tour+1) % 2 )
                 playerO = self.players[tmp]
-                print("\n### Adversaire")
-                playerO.getCardsOnGame();
-                card0 = input("Avec quelle carte souhaite tu attaquer ? ")
-                card0 = player.getCard(int(card0))
-                if(card0.type == 1):
-                    print("il s'agit d'une carte special")
+
+                #Aucun adversaire, le joueur perd 5 point direct
+                if ( playerO.noCardOnGame() == True ):
+                    playerO.popularity -= 5
+                    player.popularity += 3
+                    playerO.getCardsOnGame()
+                    print("\n\n ---****************  MANQUE DES CARTES CHEZ LE VOISIN **************** \n\n")
+                else:
+                    card0 = input("Avec quelle carte souhaite tu attaquer ? ")
+                    card0 = player.getCard(int(card0))
+                    if(card0.type == 1):
+                        print("il s'agit d'une carte special")
+                    #
+                    print("\n### Adversaire")
+                    playerO.getCardsOnGame();
+                    print("\n\n\n")
+                    card1 = input("Quelle carte souhaite tu attaquer ? ")
+
+                    self.attackCard(currentPlayer, card0, playerO.getCard(int(card1)))
+
+                    if (player.popularity >= 100 ):
+                        self.Winner = player
+                        self.Loser =  playerO
+                        self.continueGame = False
                 #
-                playerO.getCardsOnGame();
-                print("\n\n\n")
-                card1 = input("Quelle carte souhaite tu attaquer ? ")
-
-                self.attackCard(currentPlayer, card0, playerO.getCard(int(card1)))
-
-                if (player.popularity >= 100 ):
-                    self.isWin = True
-                    self.nameGameOver = player.name
-                    self.continueGame = False
-                    
                 if (player.popularity <= 0):
-                    self.isWin = False
-                    self.nameGameOver = player.name
+                    self.Winner =  playerO
+                    self.Loser =  player
                     self.continueGame = False
+
             #Next
             self.tour += 1
+        #Winning game
+        label = []
+        myfont = pygame.font.SysFont("Arial", 60)
+        rouge = (210,2,2)
+        green = (0,128,0)
+        label.append(myfont.render("Vainqueur :" +str(self.Winner.name), 2, green))
+        label.append(myfont.render("Vainqueur :" +str(self.Loser.name), 2, red))
+        fenetre.blit(label[0], (350,120))
+        fenetre.blit(label[1], (350,300))
+        pygame.display.update(0, 0, 800, 600)

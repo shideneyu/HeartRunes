@@ -19,6 +19,13 @@ class Player:
   #
   def drawFromDeck(self):
     return self.deck.draw()
+
+  #
+  def noCardOnGame(self):
+    if (len(self.cardsInGame) == 0):
+      return True
+    #
+    return False
   #
   def drawFromHand(self):
     return self.hand.draw
@@ -33,7 +40,10 @@ class Player:
       print("ATTENTION : Pas plus de 3 cartes sur votre plateau, vous ne pouvez pas en rajouter")
   #
   def deleteCardFromGame(self, card):
-    if card in  self.cardsInGame:  self.cardsInGame.remove(card)
+    for current in self.cardsInGame:
+      if( card.name == current.name ):
+        #print("DEBUG"+card.name+"== "+current.name)
+        self.cardsInGame.remove(current)
   #
   def getCardsOnGame(self):
     print ("ID | NOM \t\t| ATTAQUE \t| DEFENSE")
