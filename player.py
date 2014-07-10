@@ -21,6 +21,12 @@ class Player:
     return self.deck.draw()
 
   #
+  def inGame(self, card):
+    if ( card in self.cardsInGame):
+      return True
+    #
+    return False
+  #
   def noCardOnGame(self):
     if (len(self.cardsInGame) == 0):
       return True
@@ -34,7 +40,7 @@ class Player:
     return self.cardsInGame[card]
   #
   def playCard(self, card):
-    if (len(self.cardsInGame)<3):
+    if (len(self.cardsInGame) < 3 ) :
       self.cardsInGame.append(self.hand.playCard( card ))
     else:
       print("ATTENTION : Pas plus de 3 cartes sur votre plateau, vous ne pouvez pas en rajouter")

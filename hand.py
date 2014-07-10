@@ -30,7 +30,12 @@ class Hand:
     #
     def draw(self):
         return self.cardsHand.pop()
-
+    #
+    def inHand(self, card):
+        if ( card in self.cardsHand):
+            return True
+        #
+        return False
     #
     def getHand( self ):
         print ("ID | CS | NOM \t\t| ATTAQUE \t| DEFENSE")
@@ -42,7 +47,7 @@ class Hand:
                 print ( str(i) + "  |    | " +current.name +" \t| " +str(current.power ) + " \t| " +str(current.defense) )
             #
             i +=1
-
+    #
     def getHandGraphic(self,Fenetre):
         i = 0
         tabcard=[]
@@ -51,7 +56,6 @@ class Hand:
         yellow = (0, 0, 0)
         label=[]
         for current in self.cardsHand:
-
             #if(current.type == "1"):
             label.append(myfont.render(current.name, 1, yellow))
             tabcard.append(card)
