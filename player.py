@@ -17,6 +17,7 @@ class Player:
     def drawFromDeck(self):
         return self.deck.draw()
 
+
     def drawFromHand(self):
         return self.hand.draw
 

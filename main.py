@@ -17,6 +17,7 @@ def main():
     quit_r = quit.get_rect()
     quit_r.x, quit_r.y = 418, 369
     game = Game()
+   
     while next:
         for event in pygame.event.get():
             if event.type == QUIT:
