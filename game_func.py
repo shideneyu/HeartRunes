@@ -4,16 +4,11 @@ from hand import Hand
 from deck import Deck
 from player import Player
 
-<<<<<<< HEAD
-def start_game(fenetre,game,player):
-	pygame.display.set_caption("Titre")
-	board = {'enemy0' : 'empty', 'enemy1' : 'empty', 'enemy2' : 'empty', 'enemy3' : 'empty', 'enemy4' : 'empty', 'player0' : 'empty', 'player1' : 'empty', 'player2' : 'empty', 'player3' : 'empty', 'player4' : 'empty'}
-    
-=======
-def start_game(fenetre,game):
-	pygame.display.set_caption("House of Cards : French Edition")
 
->>>>>>> dcb30f7dfd6741bceddf64f93a1ef8a4ff82c54a
+def start_game(fenetre,game,player):
+	pygame.display.set_caption("House of Cards : French Edition")
+	board = {'enemy0' : 'empty', 'enemy1' : 'empty', 'enemy2' : 'empty', 'enemy3' : 'empty', 'enemy4' : 'empty', 'player0' : 'empty', 'player1' : 'empty', 'player2' : 'empty', 'player3' : 'empty', 'player4' : 'empty'}
+
 	#initiliase une fenetre redimmensionnable avec une largeur et une hauteur
 	fenetre = pygame.display.set_mode((800, 650),RESIZABLE)
 
