@@ -35,6 +35,10 @@ def main():
                 elif ( x in range(418,543)) and (y in range (173,202)):
                     start_player(fenetre,game)
 
+    #Game Over
+    for x in range(10):
+        print("____________________________________________________")
+    print("-------------------------------------------------")   
     GameOverText = "Le partis " + game.nameGameOver + " à "
     if(game.isWin):
         GameOverText += "gagné"
