@@ -10,9 +10,9 @@ class Game:
         self.continueGame = True
         self.playerList = {0:'ump',1:'fn', 2:'ps', 3:'communistes'}
         self.tour = 0
-        self.Winner = 0 #Si le dernier joueur a gagner ou non.
-        self.Loser = 0 #Si le dernier joueur a gagner ou non.
-        self.nameGameOver = False #le nom du dernier joueur
+        self.Winner = 0
+        self.Loser = 0
+        self.nameGameOver = False
 
     #Combat de deux cartes entre elles
     def  attackCard(self, currentPlayer, card0, card1):
@@ -42,6 +42,11 @@ class Game:
         loser.popularity -= int(difference)
         loseCard.popularity = int(card0.power) - int(card1.defense)
 
+    #
+    def  specialAttack(self,card,player):
+        print("Attaque special : " +card.name)
+                #Application de l'effet
+
     # Create the new players
     def setPlayers(self,i,player):
         if i == 0:
@@ -52,7 +57,6 @@ class Game:
             else:
                 print("Il faut choisir parmis les personnages existants" + player1)
         #
-
         if i==1:
             player2= player
             if player2  in self.playerList:
@@ -60,7 +64,6 @@ class Game:
                 print("\n ----> Joueur 2, vous avez choisi:" + self.players[i].name + "\n")
             else:
                 print("Il faut choisir parmis les personnages existants")
-        #
     #
     def showPlayersAvaible(self):
         for x in range(len (self.playerList)):
@@ -107,9 +110,12 @@ class Game:
         # Tour par tour
         yellow = (0, 0, 0)
         while(self.continueGame == True):
+
             self.updateScore()
             currentPlayer = self.tour % 2
             player = self.players[currentPlayer]
+
+            #Update graphique
             myfont = pygame.font.SysFont("Arial", 35)
             labelTour = myfont.render(" Tour :" +str(self.tour), 2, yellow)
             fenetre.blit(labelTour, (600,250))
@@ -119,66 +125,96 @@ class Game:
             if( ( self.tour % 2 ) == 0):
                 ground.groundAction(self.players)
 
-            #
+            #Affichage console
             print("\n\n- Tour " + str(self.tour) + " -----------------\n")
             print("Hey "+player.name+ ", a ton tour, voici ta main -------\n")
             player.hand.pickCard(player.deck.getCard())
-            player.hand.getHand()
 
-            card = int( input("Quel carte compte tu jouer ? ") )
-            if ( card >= 0 ):
-                cardName =  player.hand.getCard(card)
-                print("Vous avez jouer " + cardName.name )
-                player.playCard(card)
-            else:
-                print("Vous n'avez jouer aucune carte ")
+            hasPlayCard = True
+            while(hasPlayCard == True):
+
+                player.hand.getHand()
+
+                card = input("Quel carte souhaitez vous mettre en jeu ? (Entrée pour ne rien jouer et laisser son tour) ")
+
+                #none
+                if not card :
+                    print("\n ------- ! Attention: Vous n'avez jouer aucune carte ! \n")
+                else:
+                    card = int(card)
+                    cardName =  player.hand.getCard(card)
+                    print("Vous avez jouer " + cardName.name )
+
+                    if cardName.type == "1" :
+                        print("il s'agit d'une carte special")
+                        self.specialAttack(cardName, player)
+                    else:
+                        player.playCard(card)
+                        hasPlayCard = False
 
             #ICI LES ATTAQUESSSSSSS
             if( self.tour >= 1):
-                print("\n\n###### ATTAQUE : Voici vos cartes et celles de votre adversaire actuellement en jeu.")
-                print("\n### Vous ")
+                print("\n\n###### ATTAQUE\n")
+                print("\n################# Vos cartes ")
+
                 player.getCardsOnGame();
                 tmp = ((self.tour+1) % 2 )
                 playerO = self.players[tmp]
 
                 #Aucun adversaire, le joueur perd 5 point direct
-                if ( playerO.noCardOnGame() == True ):
+                if playerO.noCardOnGame() == True:
                     playerO.popularity -= 5
                     player.popularity += 3
                     playerO.getCardsOnGame()
-                    print("\n\n ---****************  MANQUE DES CARTES CHEZ LE VOISIN **************** \n\n")
+                    print("\n\n --- STOP : Votre adversaire n'a aucune carte en jeu, vous ne pouvez pas l'attaquer\n\n")
+                    print("\n\n --- Vous gagnez 3 points de popularite - votre adversaire en perd 5\n\n")
                 else:
+
                     card0 = input("Avec quelle carte souhaite tu attaquer ? ")
-                    card0 = player.getCard(int(card0))
-                    if(card0.type == 1):
-                        print("il s'agit d'une carte special")
-                    #
-                    print("\n### Adversaire")
-                    playerO.getCardsOnGame();
-                    print("\n\n\n")
-                    card1 = input("Quelle carte souhaite tu attaquer ? ")
+                    #none
+                    if not card0 :
+                        print("\n ------- ! Attention: Vous n'avez jouer aucune carte ! \n")
+                    elif int(card0) >= 0 :
+                        card0 = int(card0)
+                        card0 = player.getCard(card0)
 
-                    self.attackCard(currentPlayer, card0, playerO.getCard(int(card1)))
+                        print("\n### Adversaire")
+                        playerO.getCardsOnGame();
+                        print("\n\n\n")
+                        card1 = input("Quelle carte souhaite tu attaquer ? ")
 
-                    if (player.popularity >= 100 ):
-                        self.Winner = player
-                        self.Loser =  playerO
-                        self.continueGame = False
-                #
-                if (player.popularity <= 0):
-                    self.Winner =  playerO
-                    self.Loser =  player
-                    self.continueGame = False
+                        self.attackCard(currentPlayer, card0, playerO.getCard(int(card1)))
 
+            #
+            tmp = ((self.tour+1) % 2 )
+            playerO = self.players[tmp]
+            if (player.popularity >= 100)or (playerO.popularity <= 0) :
+                self.Winner = player
+                self.Loser =  playerO
+                self.continueGame = False
+            #
+            if (playerO.popularity) >= 100 or (player.popularity <= 0):
+                self.Winner =  playerO
+                self.Loser =  player
+                self.continueGame = False
             #Next
             self.tour += 1
         #Winning game
         label = []
-        myfont = pygame.font.SysFont("Arial", 60)
-        rouge = (210,2,2)
+        myfont = pygame.font.SysFont("Arial", 100)
+        red = (210,2,2)
         green = (0,128,0)
         label.append(myfont.render("Vainqueur :" +str(self.Winner.name), 2, green))
-        label.append(myfont.render("Vainqueur :" +str(self.Loser.name), 2, red))
-        fenetre.blit(label[0], (350,120))
-        fenetre.blit(label[1], (350,300))
+        label.append(myfont.render("Perdant :" +str(self.Loser.name), 2, red))
+
+        fenetre.blit(label[0], (50,10))
+        fenetre.blit(label[1], (50,500))
+        mireille = pygame.image.load("images/mireille.jpg").convert()
+        fenetre.blit(mireille, (50,100))
         pygame.display.update(0, 0, 800, 600)
+        pygame.mixer.stop()
+        pygame.mixer.music.load("datas/marseillaise.mp3")
+        pygame.mixer.music.set_volume(1)
+        pygame.mixer.music.play(1)
+        pygame.display.set_caption("Hymne national")
+        pygame.display.flip()
