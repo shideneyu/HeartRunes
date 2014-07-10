@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 import pygame
 import random
+import sys, select, os
 from player import Player
 from ground import Ground
 
@@ -108,6 +109,8 @@ class Game:
         # Tour par tour
         yellow = (0, 0, 0)
         while(self.continueGame == True):
+            # Clear screen every turn
+            os.system('cls' if os.name == 'nt' else 'clear')
             self.updateScore()
             currentPlayer = self.tour % 2
             player = self.players[currentPlayer]
