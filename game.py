@@ -12,23 +12,30 @@ class Game:
         self.tour = 0
 
     #Combat de deux cartes entre elles
-    def  attackCard(self, card0, card1):
+    def  attackCard(self, currentPlayer, card0, card1):
 
-        print(card.name + "lance une attaque sur " +card1.name)
-        if(card1.power > card2.defense):
-            difference = card1.power - card2.defense
-            difference = difference/10
-            print(card.name + " inflige" +difference +" de dégats")
-            winCard = card1
-            loseCard = card2
-            winner = player1
-        else:
-            winCard = card2
+        player = self.players[currentPlayer]
+        tmp = ((self.tour+1) % 2 )
+        playerO = self.players[tmp]
+
+        print(card0.name + "lance une attaque sur " +card1.name)
+        difference = card0.power - card1.defense
+        difference = difference/10
+        if(card0.power > card1.defense):
+            print(card0.name + " inflige" +str(difference)+" de dégats")
+            winCard = card0
             loseCard = card1
-            winner = player2
+            winner = player
+            loser = playerO
+        else:
+            winCard = card1
+            loseCard = card0
+            winner = playerO
+            loser = player
         #
-        loseCard.popularity = winCard.power - loseCard.defense
-        winner.popularity += 2
+        winner.popularity += difference/2
+        loser.popularity -= int(difference)
+        loseCard.popularity = int(card0.power) - int(card1.defense)
 
     # Create the new players
     def setPlayers(self,i,player):
@@ -60,23 +67,28 @@ class Game:
     def showScores(self,fenetre):
         x=1
         label ={}
-        myfont = pygame.font.SysFont("Comic Sans MS", 30)
-        yellow = (255, 255, 0)
+        myfont = pygame.font.SysFont("Arial", 30)
+        yellow = (0, 0, 0)
         for x in range(len(self.players)):
             currentPlayer = self.players[x]
             label[x] = myfont.render(currentPlayer.name + ":" +str(currentPlayer.popularity) +"%", 1, yellow)
         #
         fenetre.blit(label[0], (350,10))
         fenetre.blit(label[1], (350,510))
-        pygame.display.update(0, 0, 800, 600)
+        pygame.display.update(0, 0, 900, 600)
 
     #
-    def startGame(self):
+    def startGame(self,fenetre):
         ground = Ground()
         # Tour par tour
+        yellow = (0, 0, 0)
         while(self.continueGame == True):
             currentPlayer = self.tour % 2
             player = self.players[currentPlayer]
+            myfont = pygame.font.SysFont("Arial", 35)
+            labelTour = myfont.render(" Tour :" +str(self.tour), 2, yellow)
+            fenetre.blit(labelTour, (600,250))
+            pygame.display.update(0, 0, 800, 600)
 
             #Quand les deux ont joues on invoque un nouveau terrain
             if( ( self.tour % 2 ) == 0):
@@ -84,7 +96,6 @@ class Game:
 
             #
             print("\n\n- Tour " + str(self.tour) + " -----------------\n")
-            print("Votre popularite actuelle : " + str(player.popularity) +"%")
             print("Hey "+player.name+ ", a ton tour, voici ta main -------\n")
             player.hand.pickCard(player.deck.getCard())
             player.hand.getHand()
@@ -93,7 +104,7 @@ class Game:
             if ( card >= 0 ):
                 cardName =  player.hand.getCard(card)
                 print("Vous avez jouer " + cardName.name )
-                player.playCard( card )
+                player.playCard(card)
             else:
                 print("Vous n'avez jouer aucune carte ")
 
@@ -111,7 +122,7 @@ class Game:
                 playerO.getCardsOnGame();
                 card1 = input("Quelle carte souhaite tu attaquer ? ")
 
-                self.attackCard(player.hand.getCard(card0), player.hand.getCard(card1))
+                self.attackCard(currentPlayer, player.getCard(int(card0)) , playerO.getCard(int(card1)))
 
                 if (player.popularity >= 100 or player.popularity <= 0):
                     self.continueGame = False
