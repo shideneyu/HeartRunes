@@ -27,7 +27,13 @@ class Player:
     return self.cardsInGame[card]
   #
   def playCard(self, card):
-    self.cardsInGame.append(self.hand.playCard( card ))
+    if (len(self.cardsInGame)<3):
+      self.cardsInGame.append(self.hand.playCard( card ))
+    else:
+      print("ATTENTION : Pas plus de 3 cartes sur votre plateau, vous ne pouvez pas en rajouter")
+  #
+  def deleteCardFromGame(self, card):
+    if card in  self.cardsInGame:  self.cardsInGame.remove(card)
   #
   def getCardsOnGame(self):
     print ("ID | NOM \t\t| ATTAQUE \t| DEFENSE")

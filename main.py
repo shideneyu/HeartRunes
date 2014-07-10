@@ -3,13 +3,17 @@ from game import Game
 
 def main():
     pygame.init()
+    pygame.mixer.music.load("datas/music.mp3")
+    pygame.mixer.music.play(1)
     print("bonjour monde")
-    pygame.display.set_caption("Menu")
+    pygame.display.set_caption("House of Cards : French Edition")
     fenetre = pygame.display.set_mode((960, 720))
     next =1
     font = pygame.image.load("images/background.jpg").convert()
     play = pygame.image.load("images/start.png").convert()
     quit = pygame.image.load("images/quit.png").convert()
+    icon_32x32 = pygame.image.load("images/icon.png")
+    pygame.display.set_icon(icon_32x32)
     fenetre.blit(font,(0,0))
     fenetre.blit(play,(418,173))
     fenetre.blit(quit, (418,369))
@@ -30,6 +34,13 @@ def main():
                 elif ( x in range(418,543)) and (y in range (173,202)):
                     start_player(fenetre,game)
 
+    GameOverText = "Le partis " + game.nameGameOver + " à "
+    if(game.isWin):
+        GameOverText += "gagné"
+    else:
+        GameOverText += "perdu"
+    print(GameOverText)    
+    
     pygame.quit()
 
 if __name__ == "__main__":
