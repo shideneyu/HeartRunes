@@ -37,8 +37,6 @@ def start_game(fenetre,game,player):
 	#fenetre.blit(card, (card_x,card_y))
 	fenetre.blit(card2, (200,300))
 	game.showScores(fenetre)
-
-	#game.startGame()
 	#rafraichi la fenetre
 	pygame.display.flip()
 	continuer =1
@@ -66,12 +64,12 @@ def start_game(fenetre,game,player):
 		#fenetre.blit(mana_bar, (500,75))
 		#fenetre.blit(mana_bar2, (490,540))
 		game.showScores(fenetre)
-		
 
 
 
 
-		#game.startGame(fenetre)
+
+		game.startGame(fenetre)
 		pygame.display.flip()
 
 
@@ -148,7 +146,7 @@ def start_player(fenetre,game):
 						pygame.display.flip()
 						player = 0
 						game.setPlayers(cpt-1,player)
-						
+
 				elif ( x in range(400,650)) and (y in range (100,300)):
 					cpt+=1
 					flagfn+=1
@@ -170,7 +168,7 @@ def start_player(fenetre,game):
 						print("fn")
 						player = 1
 						game.setPlayers(cpt-1,player)
-						
+
 				elif ( x in range(100,350)) and (y in range (350,550)):
 					cpt+=1
 					flagps+=1
@@ -189,7 +187,7 @@ def start_player(fenetre,game):
 						print("ps")
 						player = 2
 						game.setPlayers(cpt-1,player)
-						
+
 				elif ( x in range(400,600)) and (y in range (350,550)):
 					cpt+=1
 					flagpc+=1
@@ -209,8 +207,8 @@ def start_player(fenetre,game):
 						player = 3
 						game.setPlayers(cpt-1,player)
 
-						
-		
+
+
 
 				elif ( x in range(320,600)) and (y in range (560,800)):
 						print(currentPlayer.name)
@@ -230,8 +228,8 @@ def display_board(fenetre, board):
             model_card_front = pygame.image.load("images/card_model_hand.png").convert_alpha()
             temp_image = pygame.image.load("decks/img/"+str(board['enemy'+str(i)]['name'])+".png").convert()
             fenetre.blit(temp_image, (168+(i*150),150))
-            fenetre.blit(model_card_front, (150+(i*150),150))   
-            
+            fenetre.blit(model_card_front, (150+(i*150),150))
+
             name = font_name.render(str(board['enemy'+str(i)]['name']), 1, (255, 255, 255))
             cost = font.render(str(board['enemy'+str(i)]['Cost']), 1, (255, 255, 255))
             health = font.render(str(board['enemy'+str(i)]['Health']), 1, (255, 255, 255))
@@ -251,8 +249,8 @@ def display_board(fenetre, board):
             model_card_front = pygame.image.load("images/card_model_hand.png").convert_alpha()
             temp_image = pygame.image.load("decks/img/"+str(board['player'+str(i)]['name'])+".png").convert()
             fenetre.blit(temp_image, (168+(i*150),350))
-            fenetre.blit(model_card_front, (150+(i*150),350))  
-            
+            fenetre.blit(model_card_front, (150+(i*150),350))
+
             name = font_name.render(str(board['player'+str(i)]['name']), 1, (255, 255, 255))
             cost = font.render(str(board['player'+str(i)]['Cost']), 1, (255, 255, 255))
             health = font.render(str(board['player'+str(i)]['Health']), 1, (255, 255, 255))

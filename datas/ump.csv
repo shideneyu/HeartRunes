@@ -18,7 +18,7 @@ id_card,type,name,attack,power,defense,popularity,favorite
 17,2,Albarello, ,78 ,68,100,6
 18,2,Ameline, ,76 ,30,100,3
 19,2,Apparu, ,75 ,55,100,1
-20,2,Arribagé,,88;55,100,1
+20,2,Arribagé,,88,55,100,1
 21,2,Aubert, ,172 ,82,100,9
 22,2,Audibert, ,175 ,82,100,9
 23,2,Balkany, ,124 ,82,100,9

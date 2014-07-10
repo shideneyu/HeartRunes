@@ -6,7 +6,6 @@ def main():
     pygame.mixer.music.load("datas/music.mp3")
     pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.play(1)
-    print("bonjour monde")
     pygame.display.set_caption("House of Cards : French Edition")
     fenetre = pygame.display.set_mode((960, 720))
     next =1
@@ -22,13 +21,12 @@ def main():
     quit_r = quit.get_rect()
     quit_r.x, quit_r.y = 418, 369
     game = Game()
-   
+
     while next:
         for event in pygame.event.get():
             if event.type == QUIT:
                 next = 0
             if event.type == MOUSEBUTTONDOWN:
-                print("text")
                 x, y = event.pos
                 if ( x in range(418,543)) and (y in range(369,398)):
                     next = 0
@@ -38,14 +36,14 @@ def main():
     #Game Over
     for x in range(10):
         print("____________________________________________________")
-    print("-------------------------------------------------")   
-    GameOverText = "Le partis " + game.nameGameOver + " à "
+    print("-------------------------------------------------")
+    GameOverText = "Le parti " + game.nameGameOver + " à "
     if(game.isWin):
         GameOverText += "gagné"
     else:
         GameOverText += "perdu"
-    print(GameOverText)    
-    
+    print(GameOverText)
+
     pygame.quit()
 
 if __name__ == "__main__":
