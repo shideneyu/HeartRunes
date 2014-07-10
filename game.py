@@ -78,7 +78,9 @@ class Game:
         pygame.display.update(0, 0, 900, 600)
 
     #
+<<<<<<< HEAD
     def startGame(self,fenetre):
+        ground = Ground()
         # Tour par tour
         yellow = (0, 0, 0)
         while(self.continueGame == True):
@@ -91,7 +93,6 @@ class Game:
 
             #Quand les deux ont joues on invoque un nouveau terrain
             if( ( self.tour % 2 ) == 0):
-                ground = Ground()
                 ground.groundAction(self.players)
 
             #
