@@ -3,7 +3,7 @@ class Hand:
         self.cardsHand = []
         self.deck = deck
         #new Hand
-        for x in range(5):
+        for x in range(3):
             self.cardsHand.append(deck.getCard())
 
     #

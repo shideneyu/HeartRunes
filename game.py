@@ -35,14 +35,16 @@ class Game:
             winner = playerO
             loser = player
         #
+        loser.deleteCardFromGame(loseCard)
+
         winner.popularity += difference/2
         loser.popularity -= int(difference)
         loseCard.popularity = int(card0.power) - int(card1.defense)
+        self.updateScore()
 
     # Create the new players
     def setPlayers(self,i,player):
-
-        if i==0:
+        if i == 0:
             player1 = player
             if player1 in self.playerList:
                 self.players[i] = Player(self.playerList[player1])
@@ -79,12 +81,33 @@ class Game:
         fenetre.blit(label[1], (350,510))
         pygame.display.update(0, 0, 900, 600)
 
+    #Show scores
+    def updateScore(self):
+        print("\n\n ---------------- ESTIMATIONS IPSOS ---------------------------\n")
+        for x in range(len(self.players)):
+            currentPlayer = self.players[x]
+            print(currentPlayer.name + ":" +str(currentPlayer.popularity) +"%")
+        #
+        print("\n ------------------------------------------------------------------\n\n")
+        """myfont = pygame.font.SysFont("Arial", 30)
+        yellow = (0, 0, 0)
+        currentPlayer = self.players[player]
+        label[player] = myfont.render(currentPlayer.name + ":" +str(currentPlayer.popularity) +"%", 1, yellow)
+        #
+        if(player == 0):
+            fenetre.blit(label[player], (350,10))
+        else:
+            fenetre.blit(label[player], (350,510))
+            #
+            pygame.display.update(0, 0, 900, 600)"""
+
     #
     def startGame(self,fenetre):
         ground = Ground()
         # Tour par tour
         yellow = (0, 0, 0)
         while(self.continueGame == True):
+            self.updateScore()
             currentPlayer = self.tour % 2
             player = self.players[currentPlayer]
             myfont = pygame.font.SysFont("Arial", 35)
@@ -111,7 +134,7 @@ class Game:
                 print("Vous n'avez jouer aucune carte ")
 
             #ICI LES ATTAQUESSSSSSS
-            if( self.tour > 1):
+            if( self.tour >= 1):
                 print("\n\n\n###### ATTAQUE : Voici vos cartes et celles de votre adversaire actuellement en jeu.")
                 print("\n### Vous ")
                 player.getCardsOnGame();
@@ -120,11 +143,15 @@ class Game:
                 print("\n### Adversaire")
                 playerO.getCardsOnGame();
                 card0 = input("Avec quelle carte souhaite tu attaquer ? ")
-                print("\n\n\n")
+                card0 = player.getCard(int(card0))
+                if(card0.type == 1):
+                    print("il s'agit d'une carte special")
+                #
                 playerO.getCardsOnGame();
+                print("\n\n\n")
                 card1 = input("Quelle carte souhaite tu attaquer ? ")
 
-                self.attackCard(currentPlayer, player.getCard(int(card0)) , playerO.getCard(int(card1)))
+                self.attackCard(currentPlayer, card0, playerO.getCard(int(card1)))
 
                 if (player.popularity >= 100 ):
                     self.isWin = True
