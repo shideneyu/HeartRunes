@@ -3,6 +3,8 @@ from game import Game
 
 def main():
     pygame.init()
+    pygame.mixer.music.load("datas/music.mp3")
+    pygame.mixer.music.play(1)
     print("bonjour monde")
     pygame.display.set_caption("House of Cards : French Edition")
     fenetre = pygame.display.set_mode((960, 720))
