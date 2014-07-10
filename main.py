@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 from game_func import *
 from game import Game
 
