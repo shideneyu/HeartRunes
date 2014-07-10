@@ -40,10 +40,10 @@ class Ground:
 		for player in players:
 			for card in player.hand:
 				if card.favorite == typeOf:
-					card.attack += bonus
+					card.power += bonus
 			for card in player.cardsInGame:
 				if card.favorite == typeOf:
-					card.attack += bonus
+					card.power += bonus
 				
 				
 				
