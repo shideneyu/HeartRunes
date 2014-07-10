@@ -78,7 +78,6 @@ class Game:
         pygame.display.update(0, 0, 900, 600)
 
     #
-<<<<<<< HEAD
     def startGame(self,fenetre):
         ground = Ground()
         # Tour par tour
